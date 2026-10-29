@@ -103,3 +103,4 @@ Inversiones Insular will accept the deliverable when:
 5. Rebalancing backtest.
 6. Monte Carlo and stress tests.
 7. Final report and README.
+ 
