@@ -1,0 +1,11 @@
+ticker,asset_class,target_weight
+SPY,equity_etf,0.20
+IEF,treasury_etf,0.15
+TLT,treasury_etf,0.10
+GLD,gold_etf,0.10
+AAPL,equity,0.08
+MSFT,equity,0.08
+PG,equity,0.08
+JPM,equity,0.07
+JNJ,equity,0.07
+XOM,equity,0.07

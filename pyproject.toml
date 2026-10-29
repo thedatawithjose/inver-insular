@@ -7,7 +7,9 @@ authors = [
     { name = "Jose A", email = "bckgcapital@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "polars>=2.1.0",
+]
 
 [project.scripts]
 inver-insular = "inver_insular:main"
