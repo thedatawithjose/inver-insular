@@ -7,12 +7,11 @@ import pytest
 from inver_insular import prices
 
 
-def fake_download(*args: object, **kwargs: object) -> dict[str, pd.DataFrame]:
-    # Función simulada (mock) que imita la respuesta de yfinance.download sin hacer peticiones de red reales.
-    # Devuelve un diccionario con un DataFrame de pandas en la clave 'Close' para dos fechas y dos tickers.
+def fake_download(*args: object, **kwargs: object) -> pd.DataFrame:
     dates = pd.DatetimeIndex(["2024-01-02", "2024-01-03"], name="Date")
-    close = pd.DataFrame({"SPY": [470.0, 468.0], "IEF": [95.0, 95.5]}, index=dates)
-    return {"Close": close}
+    columns = pd.MultiIndex.from_product([["Close"], ["IEF", "SPY"]])
+    values = [[95.0, 470.0], [95.5, 468.0]]
+    return pd.DataFrame(values, index=dates, columns=columns)
 
 
 def test_download_returns_long_table(monkeypatch: pytest.MonkeyPatch) -> None:

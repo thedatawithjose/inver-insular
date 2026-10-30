@@ -9,6 +9,8 @@ def download_prices(tickers: list[str], start: str, end: str) -> pl.DataFrame:
     # auto_adjust=True ajusta automáticamente por splits y dividendos.
     # progress=False desactiva la barra de progreso en consola.
     raw = yf.download(tickers, start=start, end=end, auto_adjust=True, progress=False)
+    if raw is None or raw.empty:
+        raise ValueError(f"No price data returned for {tickers}")
 
     # Extrae los precios de cierre ('Close') e incluye la fecha como columna con reset_index.
     # Convierte el resultado de pandas a un DataFrame de Polars en formato ancho (fechas en filas, tickers en columnas).
