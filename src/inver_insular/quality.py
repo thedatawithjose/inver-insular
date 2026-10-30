@@ -14,3 +14,13 @@ def missing_prices_report(df: pl.DataFrame) -> pl.DataFrame:
         )
         .sort("ticker")
     )
+
+
+def invalid_prices_report(df: pl.DataFrame) -> pl.DataFrame:
+    is_invalid = pl.col("adj_close").is_not_null() & (pl.col("adj_close") <= 0)
+
+    return (
+        df.group_by("ticker")
+        .agg(is_invalid.sum().alias("invalid_prices"))
+        .sort("ticker")
+    )
